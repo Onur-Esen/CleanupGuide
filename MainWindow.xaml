@@ -30,7 +30,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="450"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -47,7 +47,7 @@
                         <GridViewColumn Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="pack://application:,,,/CleanupGuide;component/Resources/DiskStorage64.png" Width="64" Height="64"
+                                    <Image Source="{Binding Image}" 
                                            VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -111,7 +111,7 @@
                 Width="70" Height="27" VerticalAlignment="Center" HorizontalAlignment="Left"
                     Click="ButtonAutodeskUninstall_Click"/>
                     <TextBlock x:Name="TextBlockAutodeskUninstall" Text="Unused Autodesk products can be uninstalled. For 2022 products and later, the Windows Control Panel is the better."
-                       Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+                       Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,5,5"/>
                     <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,5,5,5"
    Source="pack://application:,,,/CleanupGuide;component/Resources/AutodeskUninstallTool.png"/>
                 </Grid>
@@ -134,7 +134,7 @@
 Width="70" Height="27" VerticalAlignment="Center" 
     Click="ButtonDiskCleanup_Click"/>
                         <TextBlock Name="TextBlockDiskCleanup" Text="Windows Disk Clean up is a very useful tool to delete unnecessary files. Clean up system files is recommended too."
-       Grid.Column="1" VerticalAlignment="Top" Margin="5,5,5,5"/>
+       Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,5"/>
                     </Grid>
 
                     <Grid Grid.Row="1">

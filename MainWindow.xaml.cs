@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -18,10 +19,10 @@ namespace CleanupGuide
         string UserTempCaution = "Some files might be in use and give skip error";
         string AdminTempDescription = "Temporary files for the user admin";
         string AdminTempCaution = "Some files might be in use and give skip error";
-        string RevitCacheDescription = "Local cache files of Revit while working with central models";
-        string RevitCacheCaution = "Loading the model might take time, only next time";
-        string RevitPacDescription = "Pac cache files of Revit while working with central models which has links";
-        string RevitPacCaution = "Loading the model might take time, only next time";
+        string RevitCacheDescription = "Collaboration cache is a temporary storage for changes made by users as they edit a project.";
+        string RevitCacheCaution = "Loading the model next time might take time";
+        string RevitPacDescription = "Pac cache is a temporary storage used when Revit opens a project.";
+        string RevitPacCaution = "Loading the model next time might take time";
 
         public MainWindow()
         {
@@ -33,16 +34,19 @@ namespace CleanupGuide
         private void LangJp()
         {
             UserTempDescription = "現在のユーザーの一時ファイル";
-            UserTempCaution = "一部のファイルが使用中であるため、スキップ エラーが発生する可能性があります";
+            UserTempCaution = "一部のファイルが使用中であるため、スキップ警告が発生する可能性があります";
             AdminTempDescription = "ユーザーadminの一時ファイル";
-            AdminTempCaution = "一部のファイルが使用中であるため、スキップ エラーが発生する可能性があります";
-            RevitCacheDescription = "中央モデルの操作中に Revit のローカル キャッシュ ファイル";
-            RevitCacheCaution = "モデルの読み込みに時間がかかる場合があります。次回に実行してください";
-            RevitPacDescription = "リンクのある中央モデルの操作中に Revit の Pac キャッシュ ファイルを実行してください";
-            RevitPacCaution = "モデルの読み込みに時間がかかる場合があります。次回に実行してください";
+            AdminTempCaution = "一部のファイルが使用中であるため、スキップ警告が発生する可能性があります";
+            RevitCacheDescription = "コラボレーションキャッシュは、ユーザーがプロジェクトを編集する際に行った変更を一時的に保存するための領域です。";
+            RevitCacheCaution = "モデルを今回は開くに時間がかかります。";
+            RevitPacDescription = "Revitがプロジェクトを開く際に使用される一時的なファイルを保存するためのキャッシュです。";
+            RevitPacCaution = "モデルを今回は開くに時間がかかります。";
 
             TextBlockAutodeskUninstall.Text = "オートデスク製品はアンインストールできます。2022以降では、Windows コントロール パネルを使用することをお勧めします。";
             TextBlockDiskCleanup.Text = "不要なファイルを削除するのに非常に便利なツールです。システム ファイルのクリーンアップもお勧めします。";
+
+            ButtonAutodeskUninstall.Content = "開く";
+            ButtonDiskCleanup.Content = "開く";
         }
 
         private class MyListViewItem
@@ -93,6 +97,8 @@ namespace CleanupGuide
 
             public double Progress { get; set; }
 
+            public BitmapImage Image { get; set;}
+
             public MyListViewDiskItem(string disk, long freeSpace, long totalSpace)
             {
                 Disk = disk;
@@ -128,7 +134,7 @@ namespace CleanupGuide
             try
             {
                 string revitPac = "C:\\Users\\" + user + "\\AppData\\Local\\Autodesk\\Revit\\PacCache";
-                items.Add(new MyListViewItem("Revit Pac Cachee", revitPac, uriRevit, RevitPacDescription, RevitPacCaution));
+                items.Add(new MyListViewItem("Revit Pac Cache", revitPac, uriRevit, RevitPacDescription, RevitPacCaution));
             }
             catch (Exception) { }
 
@@ -139,7 +145,7 @@ namespace CleanupGuide
                 {
                     string revitCache = $"C:\\Users\\{user}\\AppData\\Local\\Autodesk\\Revit\\Autodesk Revit {version}\\CollaborationCache";
                     if(Directory.Exists(revitCache))
-                        items.Add(new MyListViewItem($"Revit Cache {version}", revitCache, uriRevit, RevitCacheDescription, RevitCacheCaution));
+                        items.Add(new MyListViewItem($"Revit {version} Cache", revitCache, uriRevit, RevitCacheDescription, RevitCacheCaution));
                 }
             }
             catch (Exception) { }
@@ -156,6 +162,14 @@ namespace CleanupGuide
             foreach (var drive in DriveInfo.GetDrives())
             {
                 MyListViewDiskItem item = new MyListViewDiskItem(drive.VolumeLabel, drive.AvailableFreeSpace, drive.TotalSize);
+
+                var systemRoot = Path.GetPathRoot(Environment.SystemDirectory).ToString();
+
+                if (drive.RootDirectory.Name == systemRoot)
+                    item.Image = new BitmapImage(new Uri("pack://application:,,,/CleanupGuide;component/Resources/DriveWindows64.png"));
+                else
+                    item.Image = new BitmapImage(new Uri("pack://application:,,,/CleanupGuide;component/Resources/DrivePersonal64.png"));
+
                 items.Add(item);
             }
 
