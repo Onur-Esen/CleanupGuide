@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CleanupGuide"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        d:DesignHeight="800" d:DesignWidth="1000" MinHeight="800" MinWidth="1000"
-        Height="800" Width="1000" Title="Cleanup Guide"
+        d:DesignHeight="900" d:DesignWidth="1100" MinHeight="900" MinWidth="1100"
+        Height="900" Width="1100" Title="Cleanup Guide"
         Loaded="Window_Loaded" Icon="pack://application:,,,/CleanupGuide;component/Resources/CleanupGuide.png">
 
     <Window.Resources>
@@ -30,41 +30,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="300"/>
+            <RowDefinition Height="450"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-
-            <!--<Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Width="64" Height="64" Source="pack://application:,,,/CleanupGuide;component/Resources/disk-storage.png"/>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
-                    <TextBlock Text="Windows 10 (C:)" Margin="5,5,5,5"/>
-                    <ProgressBar Name="ProgressBarC" Height="16" Foreground="AliceBlue" />
-                    <TextBlock Text="74.4/450 GB" HorizontalAlignment="Left" Margin="5,5,5,5"/>
-                </StackPanel>
-
-                <Image Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Width="64" Height="64" Source="pack://application:,,,/CleanupGuide;component/Resources/disk-storage.png"/>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
-                    <TextBlock Text="Windows 10 (C:)" Margin="5,5,5,5"/>
-                    <ProgressBar Name="ProgressBarD" Height="16" Foreground="AliceBlue" />
-                    <TextBlock Text="74.4/450 GB" HorizontalAlignment="Left" Margin="5,5,5,5"/>
-                </StackPanel>
-            </Grid>-->
 
             <ListView x:Name="ListViewDisk" Margin="5,5,5,5" Grid.Column="0"
           d:ItemsSource="{d:SampleData ItemCount=2}">
@@ -107,11 +81,11 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Files" Width="70" DisplayMemberBinding="{Binding Count}"/>
                         <GridViewColumn Header="Size" Width="70" DisplayMemberBinding="{Binding SizeText}"/>
-                        <GridViewColumn Header="Description" Width="250" DisplayMemberBinding="{Binding Description}"/>
-                        <GridViewColumn Header="Caution" Width="250" DisplayMemberBinding="{Binding Caution}"/>
+                        <GridViewColumn Header="Description" Width="240" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Caution" Width="240" DisplayMemberBinding="{Binding Caution}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

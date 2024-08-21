@@ -4,15 +4,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CleanupGuide
 {
@@ -110,7 +103,6 @@ namespace CleanupGuide
             }
         }
 
-
         private List<MyListViewItem> GetFolderList()
         {
             List<MyListViewItem> items = new List<MyListViewItem>();
@@ -135,17 +127,24 @@ namespace CleanupGuide
 
             try
             {
-                string revitCache = "C:\\Users\\" + user + "\\AppData\\Local\\Autodesk\\Revit\\Autodesk Revit 2021\\CollaborationCache";
-                items.Add(new MyListViewItem("Revit Cache", revitCache, uriRevit, RevitCacheDescription, RevitCacheCaution));
+                string revitPac = "C:\\Users\\" + user + "\\AppData\\Local\\Autodesk\\Revit\\PacCache";
+                items.Add(new MyListViewItem("Revit Pac Cachee", revitPac, uriRevit, RevitPacDescription, RevitPacCaution));
             }
             catch (Exception) { }
 
             try
             {
-                string revitPac = "C:\\Users\\" + user + "\\AppData\\Local\\Autodesk\\Revit\\PacCache";
-                items.Add(new MyListViewItem("Revit Pac Cachee", revitPac, uriRevit, RevitPacDescription, RevitPacCaution));
+                string[] versions = ["2017","2019", "2020", "2021", "2022", "2023", "2024"];
+                foreach (string version in versions)
+                {
+                    string revitCache = $"C:\\Users\\{user}\\AppData\\Local\\Autodesk\\Revit\\Autodesk Revit {version}\\CollaborationCache";
+                    if(Directory.Exists(revitCache))
+                        items.Add(new MyListViewItem($"Revit Cache {version}", revitCache, uriRevit, RevitCacheDescription, RevitCacheCaution));
+                }
             }
             catch (Exception) { }
+
+
 
             return items;
         }

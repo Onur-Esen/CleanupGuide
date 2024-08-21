@@ -19,3 +19,4 @@ D:\VS\CleanupGuide\CleanupGuide\obj\Debug\net8.0-windows\CleanupGuide.pdb
 D:\VS\CleanupGuide\CleanupGuide\obj\Debug\net8.0-windows\CleanupGuide.genruntimeconfig.cache
 D:\VS\CleanupGuide\CleanupGuide\obj\Debug\net8.0-windows\ref\CleanupGuide.dll
 D:\VS\CleanupGuide\CleanupGuide\obj\Debug\net8.0-windows\CleanupGuide_Content.g.cs
+D:\VS\CleanupGuide\CleanupGuide\obj\Debug\net8.0-windows\CleanupGuide.sourcelink.json
