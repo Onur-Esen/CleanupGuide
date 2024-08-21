@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CleanupGuide"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        d:DesignHeight="900" d:DesignWidth="1100" MinHeight="900" MinWidth="1100"
-        Height="900" Width="1100" Title="Cleanup Guide"
+        d:DesignHeight="900" d:DesignWidth="1100" MinHeight="700" MinWidth="900"
+        Height="700" Width="900" Title="Cleanup Guide"
         Loaded="Window_Loaded" Icon="pack://application:,,,/CleanupGuide;component/Resources/CleanupGuide.png">
 
     <Window.Resources>
