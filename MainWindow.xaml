@@ -1,0 +1,183 @@
+﻿<Window x:Class="CleanupGuide.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CleanupGuide"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        d:DesignHeight="800" d:DesignWidth="1000" MinHeight="800" MinWidth="1000"
+        Height="800" Width="1000" Title="Cleanup Guide"
+        Loaded="Window_Loaded" Icon="pack://application:,,,/CleanupGuide;component/Resources/CleanupGuide.png">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--<Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Width="64" Height="64" Source="pack://application:,,,/CleanupGuide;component/Resources/disk-storage.png"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+                    <TextBlock Text="Windows 10 (C:)" Margin="5,5,5,5"/>
+                    <ProgressBar Name="ProgressBarC" Height="16" Foreground="AliceBlue" />
+                    <TextBlock Text="74.4/450 GB" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+                </StackPanel>
+
+                <Image Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Width="64" Height="64" Source="pack://application:,,,/CleanupGuide;component/Resources/disk-storage.png"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                    <TextBlock Text="Windows 10 (C:)" Margin="5,5,5,5"/>
+                    <ProgressBar Name="ProgressBarD" Height="16" Foreground="AliceBlue" />
+                    <TextBlock Text="74.4/450 GB" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+                </StackPanel>
+            </Grid>-->
+
+            <ListView x:Name="ListViewDisk" Margin="5,5,5,5" Grid.Column="0"
+          d:ItemsSource="{d:SampleData ItemCount=2}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="pack://application:,,,/CleanupGuide;component/Resources/DiskStorage64.png" Width="64" Height="64"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+                                        <TextBlock Text="{Binding Disk}" Margin="5,5,5,5"/>
+                                        <ProgressBar Name="ProgressBarDrive" Value="{Binding Progress}" Height="16" Width="140" Foreground="#FF269FDA" />
+                                        <TextBlock Text="{Binding Storage}" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <ListView x:Name="ListViewMain" Margin="5,5,5,5" Grid.Column="1"
+                      d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Folder" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="ButtonFolder_Click" Tag="{Binding Path}" Background="Transparent" BorderThickness="0">
+                                        <Image Source="{Binding Image}" Width="32" Height="32"
+                               VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Files" Width="70" DisplayMemberBinding="{Binding Count}"/>
+                        <GridViewColumn Header="Size" Width="70" DisplayMemberBinding="{Binding SizeText}"/>
+                        <GridViewColumn Header="Description" Width="250" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Caution" Width="250" DisplayMemberBinding="{Binding Caution}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Autodesk Uninstall Tool">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="ButtonAutodeskUninstall" Content="Open" Grid.Column="0"
+                Width="70" Height="27" VerticalAlignment="Center" HorizontalAlignment="Left"
+                    Click="ButtonAutodeskUninstall_Click"/>
+                    <TextBlock x:Name="TextBlockAutodeskUninstall" Text="Unused Autodesk products can be uninstalled. For 2022 products and later, the Windows Control Panel is the better."
+                       Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+                    <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,5,5,5"
+   Source="pack://application:,,,/CleanupGuide;component/Resources/AutodeskUninstallTool.png"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Windows Disk Clean up" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="ButtonDiskCleanup" Content="Open" Grid.Column="0"
+Width="70" Height="27" VerticalAlignment="Center" 
+    Click="ButtonDiskCleanup_Click"/>
+                        <TextBlock Name="TextBlockDiskCleanup" Text="Windows Disk Clean up is a very useful tool to delete unnecessary files. Clean up system files is recommended too."
+       Grid.Column="1" VerticalAlignment="Top" Margin="5,5,5,5"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Margin="5,5,5,5"
+   Source="pack://application:,,,/CleanupGuide;component/Resources/DiskCleanUp.png"/>
+                        <Image Grid.Column="1" Margin="5,5,5,5"
+   Source="pack://application:,,,/CleanupGuide;component/Resources/DiskCleanUpAdmin.png"/>
+                    </Grid>
+
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+
+    </Grid>
+</Window>

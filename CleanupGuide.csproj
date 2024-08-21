@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>CleanupGuide.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\AutodeskUninstallTool.png" />
+    <None Remove="Resources\CleanupGuide.png" />
+    <None Remove="Resources\DiskCleanUp.png" />
+    <None Remove="Resources\DiskCleanUpAdmin.png" />
+    <None Remove="Resources\DiskStorage512.png" />
+    <None Remove="Resources\DiskStorage64.png" />
+    <None Remove="Resources\hard-drive.png" />
+    <None Remove="Resources\RevitIcon.png" />
+    <None Remove="Resources\WindowsFolder32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CleanupGuide.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\AutodeskUninstallTool.png" />
+    <Resource Include="Resources\CleanupGuide.png" />
+    <Resource Include="Resources\DiskStorage512.png" />
+    <Resource Include="Resources\DiskCleanUp.png" />
+    <Resource Include="Resources\DiskCleanUpAdmin.png" />
+    <Resource Include="Resources\DiskStorage64.png" />
+    <Resource Include="Resources\hard-drive.png" />
+    <Resource Include="Resources\RevitIcon.png" />
+    <Resource Include="Resources\WindowsFolder32.png" />
+  </ItemGroup>
+
+</Project>
