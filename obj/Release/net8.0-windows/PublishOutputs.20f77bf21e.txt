@@ -1,5 +1,0 @@
-D:\VS\CleanupGuide\CleanupGuide\bin\Release\net8.0-windows\publish\CleanupGuide.exe
-D:\VS\CleanupGuide\CleanupGuide\bin\Release\net8.0-windows\publish\CleanupGuide.dll
-D:\VS\CleanupGuide\CleanupGuide\bin\Release\net8.0-windows\publish\CleanupGuide.deps.json
-D:\VS\CleanupGuide\CleanupGuide\bin\Release\net8.0-windows\publish\CleanupGuide.runtimeconfig.json
-D:\VS\CleanupGuide\CleanupGuide\bin\Release\net8.0-windows\publish\CleanupGuide.pdb

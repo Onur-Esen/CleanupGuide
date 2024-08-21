@@ -38,9 +38,9 @@ namespace CleanupGuide
             AdminTempDescription = "ユーザーadminの一時ファイル";
             AdminTempCaution = "一部のファイルが使用中であるため、スキップ警告が発生する可能性があります";
             RevitCacheDescription = "コラボレーションキャッシュは、ユーザーがプロジェクトを編集する際に行った変更を一時的に保存するための領域です。";
-            RevitCacheCaution = "モデルを今回は開くに時間がかかります。";
+            RevitCacheCaution = "次回モデルを開く時に時間がかかります。";
             RevitPacDescription = "Revitがプロジェクトを開く際に使用される一時的なファイルを保存するためのキャッシュです。";
-            RevitPacCaution = "モデルを今回は開くに時間がかかります。";
+            RevitPacCaution = "次回モデルを開く時に時間がかかります。";
 
             TextBlockAutodeskUninstall.Text = "オートデスク製品はアンインストールできます。2022以降では、Windows コントロール パネルを使用することをお勧めします。";
             TextBlockDiskCleanup.Text = "不要なファイルを削除するのに非常に便利なツールです。システム ファイルのクリーンアップもお勧めします。";
